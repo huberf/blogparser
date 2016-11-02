@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog Parser</title>
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/material.css">
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="jquery-1.12.0.min.js"></script>
+<script>if (window.module) module = window.module;</script>
+<style>
+.input {
+  width: 100%;
+  font-size: 24px;
+}
+.form-center>h1 {
+color: white;
+font-family: sans-serif;
+}
+.form-center>p {
+color: white;
+font-family: sans-serif;
+}
+.form-center {
+width: 500px;
+}
+body {
+  background: grey;
+}
+</style>
+  </head>
+  <body class="form-center-container">
+    <div class="form-center shadow primary">
+      <br />
+      <input class="input" id="url" type="text"></input>
+      <h1 id="title">Hello World!</h1>
+      <p id="content"></p>
+    </div>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+var r = require('request');
+function getUrl() {
+  console.log("Getting URL");
+  var url = document.getElementById('url').value;
+  var api = "http://54.149.145.79/api/v1/article?url=";
+  r.get(api + url, (err, resp, body) => {
+   var data = JSON.parse(body);
+   document.getElementById('title').innerHTML = data.title;
+   document.getElementById('content').innerHTML = data.text;
+   return [data.title, data.body];
+  })
+}
+$("#url").on('keyup', function (e) {
+      if (e.keyCode == 13) {
+        getUrl();
+      }
+});
+function importClip() {
+  console.log('Importing');
+	const {clipboard} = require('electron')
+  console.log(clipboard.readText(String));
+  $('#url').val(clipboard.readText());
+}
+  </script>
+</html>

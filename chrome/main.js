@@ -5,7 +5,7 @@ function getword(info,tab) {
   });
 }
 chrome.contextMenus.create({
-  title: "Search: %s",
+  title: "View %s with BlogParser",
   contexts:["link"],
   onclick: getword,
 });

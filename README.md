@@ -8,4 +8,11 @@ With BlogParser, my server will load any requested page and attempt to identify 
 
 ## Getting started
 
-The getting started guide will be coming soon.
+The full getting started guide will be coming soon.
+### Requirements
+* Node.js
+* NPM
+
+### Steps
+1. Clone the repo
+2. Run "npm install && npm start"
